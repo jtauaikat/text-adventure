@@ -24,13 +24,13 @@ public class MainLoop
         String[] flavourText = {"You are standing at the mouth of the cave, ready to explore. enter 'down' to descend.", 
             "you are standing in an empty cavern, lit dimly by the hole you fell through. There is an opening to the south and the east."
             , "you enter a mineral deposit, filled with glimmering purple crystals. There is an entrance to the south, north and a staircase up to what looks like a mineshaft. The stairs seem busted, but if you had a rope. you could reach it.", 
-              "you enter a dark room, lined with thick cobwebs. The spider sits in the centre of the room. There is an entrance to the west, east and north.", 
+              "you enter a dark room, lined with thick cobwebs. The spider sits in the centre of the room. There is an entrance to the west and north.", 
                 "You climb the rope into the mineshaft. There is a long corridor with some chests lining the walls and an entrance to the north and a rope down.", 
                 "you are in what was an old exit for the local miners. A landslide is blocking the exit, but could be easily removed with some sort of pickaxe. There are two entrances, one path up and one path east.", 
                 "you are on a rocky shore beside a deep pool in the centre of the room. You see something glimmering at the bottom of the pool. There is an entrance to the west or you can swim down to the bottom of the pool.", 
                 "You swim to the bottom of the pool, to find a sort of handle sticking out of the bottom of the pool. You can search, or you can head back up.", 
                 "The spider slashed you across the chest, landing the killing blow. You have died.", 
-                "you are standing at the bottom of an old, dried out well, now crumbled and empty. There is no way you can reach the well entrance, but there seems to be something sitting in the middle of the room. ", 
+                "you are standing at the bottom of an old, dried out well, now crumbled and empty. There is no way you can reach the well entrance, but there seems to be something sitting in the middle of the room. There is only one exit to the east.", 
                 "clawing the rubble away, you clamber out of the tunnel exit, finally free. You win!"}; //all text that is shown relating to rooms
 
         String[] inventory = {"","",""}; //inventory array, empty when no items
@@ -210,33 +210,33 @@ public class MainLoop
                         return; //ends loop.
                         
                     case "commands":
-                        System.out.println("You can go:"); //tells you if you what valid commands are available
+                        System.out.println("Valid commands:"); //tells you if you what valid commands are available
                         if(goUp[roomNumber]>=0){
-                            System.out.print(" Up,");
+                            System.out.print(" up,");
                         }
                         if(goDown[roomNumber]>=0){
-                            System.out.print(" Down,");
+                            System.out.print(" down,");
                         }
                         if(goNorth[roomNumber]>=0){
-                            System.out.print(" North,");
+                            System.out.print(" north,");
                         }
                         if(goEast[roomNumber]>=0){
-                            System.out.print(" East,");
+                            System.out.print(" east,");
                         }
                         if(goSouth[roomNumber]>=0){
-                            System.out.print(" South,");
+                            System.out.print(" south,");
                         }
                         if(goWest[roomNumber]>=0){
-                            System.out.print(" West,");
+                            System.out.print(" west,");
                         }
                         if(roomNumber == 2 || roomNumber == 5){
-                            System.out.print(" Use,");
+                            System.out.print(" use,");
                         }
                         if(roomNumber == 7 && inventory[0]==""|| roomNumber == 9 && inventory[1]=="" || roomNumber == 4 && inventory[2]==""){
-                            System.out.print(" Search,");
+                            System.out.print(" search,");
                         }
-                        System.out.print(" Inventory,");
-                        System.out.print(" End Game.");
+                        System.out.print(" inventory,");
+                        System.out.println(" end game");
                         System.out.println(flavourText[roomNumber]);
                         break;
                         
@@ -262,6 +262,7 @@ public class MainLoop
                     //System.out.println("                                   ||");
                     //System.out.println("                                   \\");
                     //System.out.println("                                    '");
+                    System.out.println("The spider springs towards you, prepared for a fight. You can \"attack\" or \"block\".");
                     System.out.println("Enemy Health = "+ spiderHealth);
                     System.out.println("Player Health = "+ playerHealth);
                     encounter = true;
