@@ -241,7 +241,7 @@ public class MainLoop
                         break;
                         
                     default:
-                        System.out.println("I don't understand this command.");
+                        System.out.println("I don't understand this command."); //prints this if invalid command entered
                         System.out.println(flavourText[roomNumber]);
                 }
                 if(roomNumber==3 && !spiderDeath){
@@ -262,15 +262,15 @@ public class MainLoop
                     //System.out.println("                                   ||");
                     //System.out.println("                                   \\");
                     //System.out.println("                                    '");
-                    System.out.println("The spider springs towards you, prepared for a fight. You can \"attack\" or \"block\".");
-                    System.out.println("Enemy Health = "+ spiderHealth);
-                    System.out.println("Player Health = "+ playerHealth);
-                    encounter = true;
-                    running = false;
+                    System.out.println("The spider springs towards you, prepared for a fight. You can \"attack\" or \"block\"."); //prints flavour text when combat begins
+                    System.out.println("Enemy Health = "+ spiderHealth); //prints spider health
+                    System.out.println("Player Health = "+ playerHealth); //prints player health
+                    encounter = true; //starts encounter code
+                    running = false; //stops movement code
                     //System.out.println("encounter");
                 }
-                if(roomNumber==10 || roomNumber==8){
-                    mainGame = false;
+                if(roomNumber==10 || roomNumber==8){ //ends code if in room 10 or 8
+                    mainGame = false; 
                     running = false;
                 }
                 
@@ -283,68 +283,65 @@ public class MainLoop
                 //System.out.println("Up = "+goUp[roomNumber]);
                 //System.out.println("Down = "+goDown[roomNumber]);
             //}
+                        //debug code
 
         }
         while(encounter){
-            String keyInput = keyboard.nextLine();
+            String keyInput = keyboard.nextLine(); //takes keyinput
             switch(keyInput){
-                case "attack":
-                    playerDamage = rand.nextInt(20);
-                    playerDamage++;
-                    if(playerDamage > 7){
-                        playerDamage = rand.nextInt(playerDamageValue);
-                        playerDamage ++;
-                        spiderHealth -= playerDamage;
-                        System.out.println("you hit for "+playerDamage+" damage.");
-                        playerDamage = 0;
+                case "attack": //if player attacks:
+                    playerDamage = rand.nextInt(20); //generates random number between 0-19
+                    playerDamage++; //adds 1
+                    if(playerDamage > 7){ //if value >7
+                        playerDamage = rand.nextInt(playerDamageValue); //generates random number depending on damage modifier
+                        playerDamage ++; //adds 1
+                        spiderHealth -= playerDamage; //subtracts spider health from damage output
+                        System.out.println("you hit for "+playerDamage+" damage."); //prints text to tell player damage
+                        playerDamage = 0; //resets damage to 0
                     }else{
-                        System.out.println("you missed!");
+                        System.out.println("you missed!"); //if <7, prints miss text
                     }
-                    spiderDamage = rand.nextInt(20);
-                    if(spiderDamage > 7){
-                        spiderDamage = rand.nextInt(playerDamageValue);
-                        playerDamage += 3;
-                        spiderHealth -= playerDamage;
-                        System.out.println("spider hit for "+playerDamage+" damage.");
-                        playerDamage = 0;
+                    spiderDamage = rand.nextInt(20); //spider rolls
+                    if(spiderDamage > 7){ //if spider rolls >7,
+                        spiderDamage = rand.nextInt(playerDamageValue); //rolls for spider damage
+                        spiderHealth -= playerDamage; //subtracts spiderDamage from playerHealth
+                        System.out.println("spider hit for "+playerDamage+" damage."); //prints hit text
+                        spiderDamage = 0; //resets
                     }else{
-                        System.out.println("spider missed!");
+                        System.out.println("spider missed!"); //if <7, print miss text
                     }
-                    
-                    spiderDamage ++;
-                    playerHealth -= spiderDamage;
                     break;
                     
                 case "block":
-                    playerHealth += 3;
-                    spiderHealth += 2;
+                    playerHealth += 3; //gives plyer health
+                    spiderHealth += 2; //gives spider health
                     break;
                     
                 case "end game":
-                    System.out.println("Game closed.");
+                    System.out.println("Game closed."); //ends game
                     return;
                     
                 default:
-                    System.out.println("You can't do that.");
+                    System.out.println("You can't do that."); //prints if invalid code
                     
                 
             }
             if(playerHealth <= 0){
-                roomNumber = 8;
-                encounter = false;
-                running = true;
+                roomNumber = 8; //sends player to death room
+                encounter = false; //ends all loops
+                running = true; //ends all loops
             }
             if(spiderHealth <= 0){
-                System.out.println("it died");
-                running = true;
-                encounter = false;
-                spiderDeath = true;
-                System.out.println(flavourText[roomNumber]);
+                System.out.println("it died"); //prints spider death text
+                running = true; //starts movement code
+                encounter = false; //ends combat code
+                spiderDeath = true; //toggles spider death boolean
+                System.out.println(flavourText[roomNumber]); //prints roomNumber
 
             }
             if(encounter){
-                System.out.println("Enemy Health = "+ spiderHealth);
-                System.out.println("Player Health = "+ playerHealth);
+                System.out.println("Enemy Health = "+ spiderHealth); //prints spider health
+                System.out.println("Player Health = "+ playerHealth); //prints player health
             }  
         }
     }
